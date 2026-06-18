@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio de Arquitetura Premium | Alta Arquitetura de Luxo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#1A202C',   // Deep Charcoal
+                            secondary: '#2D3748', // Slate Blue
+                            accent: '#C5A880',    // Warm Taupe / Elegant Gold
+                            accentHover: '#B89775', // Elegant Gold Darker
+                            bgOff: '#FAFAFA',     // Off-White
+                            bgCream: '#F4F4F0',   // Soft Cream
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        /* Ajustes adicionais de suavização e refinamento visual */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #1A202C;
+        }
+
+        .font-serif-editorial {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Esconder barra de rolagem mantendo a funcionalidade em carrosséis/listas móveis se necessário */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-accent selection:text-white" x-data="{ mobileMenuOpen: false }">
+
+    <header
+        class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-brand-primary/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-24 flex items-center justify-between">
+
+            <a href="#inicio" class="group flex flex-col tracking-widest text-brand-primary">
+                <span
+                    class="font-serif-editorial text-2xl font-semibold uppercase leading-none tracking-[0.2em] group-hover:text-brand-accent transition-colors duration-300">HAUS
+                    &amp; CO.</span>
+                <span class="text-[9px] uppercase tracking-[0.4em] text-brand-secondary/60 mt-1">Arquitetura
+                    Premium</span>
+            </a>
+
+            <nav
+                class="hidden md:flex items-center space-x-10 text-xs font-medium uppercase tracking-[0.2em] text-brand-secondary">
+                <a href="#inicio" class="hover:text-brand-accent transition-colors duration-300 py-2">Início</a>
+                <!-- <a href="#servicos" class="hover:text-brand-accent transition-colors duration-300 py-2">Abordagem</a> -->
+                <a href="#projetos" class="hover:text-brand-accent transition-colors duration-300 py-2">Projetos</a>
+                <a href="#processo" class="hover:text-brand-accent transition-colors duration-300 py-2">Processo</a>
+                <a href="#sobre" class="hover:text-brand-accent transition-colors duration-300 py-2">Sobre</a>
+                <a href="#contato" class="hover:text-brand-accent transition-colors duration-300 py-2">Contato</a>
+            </nav>
+
+            <div class="hidden md:block">
+                <a href="#contato"
+                    class="inline-block text-xs uppercase tracking-[0.2em] font-semibold border-b border-brand-primary pb-1 hover:text-white hover:border-brand-accent hover:bg-brand-accent transition-all duration-300 p-2">
+                    Solicite Orçamento
+                </a>
+            </div>
+
+            <button @click="mobileMenuOpen = !mobileMenuOpen"
+                class="md:hidden flex flex-col justify-center items-end w-8 h-8 space-y-1.5 focus:outline-none z-50"
+                aria-label="Menu principal">
+                <span class="h-0.5 bg-brand-primary transition-all duration-300"
+                    :class="mobileMenuOpen ? 'w-6 transform rotate-45 translate-y-2' : 'w-6'"></span>
+                <span class="h-0.5 bg-brand-primary transition-all duration-300"
+                    :class="mobileMenuOpen ? 'w-0 opacity-0' : 'w-4'"></span>
+                <span class="h-0.5 bg-brand-primary transition-all duration-300"
+                    :class="mobileMenuOpen ? 'w-6 transform -rotate-45 -translate-y-2' : 'w-5'"></span>
+            </button>
+        </div>
+
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-[-10px]" x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-[-10px]"
+            class="absolute top-full left-0 w-full bg-white border-b border-brand-primary/5 shadow-xl md:hidden px-6 py-8"
+            style="display: none;">
+            <nav class="flex flex-col space-y-5 text-sm font-medium uppercase tracking-[0.15em] text-brand-secondary">
+                <a href="#inicio" @click="mobileMenuOpen = false"
+                    class="hover:text-brand-accent transition-colors duration-300">Início</a>
+                <a href="#servicos" @click="mobileMenuOpen = false"
+                    class="hover:text-brand-accent transition-colors duration-300">Abordagem</a>
+                <a href="#projetos" @click="mobileMenuOpen = false"
+                    class="hover:text-brand-accent transition-colors duration-300">Projetos</a>
+                <a href="#processo" @click="mobileMenuOpen = false"
+                    class="hover:text-brand-accent transition-colors duration-300">Processo</a>
+                <a href="#sobre" @click="mobileMenuOpen = false"
+                    class="hover:text-brand-accent transition-colors duration-300">Sobre</a>
+                <a href="#contato" @click="mobileMenuOpen = false"
+                    class="hover:text-brand-accent transition-colors duration-300">Contato</a>
+                <div class="pt-4 border-t border-brand-primary/5">
+                    <a href="#contato" @click="mobileMenuOpen = false"
+                        class="inline-block bg-brand-primary text-white text-xs uppercase tracking-widest text-center w-full py-4 px-6 hover:bg-brand-accent transition-colors duration-300">
+                        Fale Conosco
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio"
+        class="relative min-h-[calc(100vh-6rem)] flex items-center bg-brand-bgOff overflow-hidden border-b border-brand-primary/5">
+        <div
+            class="max-w-7xl mx-auto w-full px-6 lg:px-12 py-16 lg:py-0 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+            <div class="lg:col-span-6 flex flex-col space-y-8 z-10">
+                <div class="flex items-center space-x-3">
+                    <span class="w-12 h-[1px] bg-brand-accent"></span>
+                    <span class="text-xs font-medium uppercase tracking-[0.3em] text-brand-accent">Studio de Arquitetura
+                        Autoral</span>
+                </div>
+
+                <h1
+                    class="font-serif-editorial text-4xl sm:text-5xl lg:text-6xl text-brand-primary font-light leading-[1.15] lg:leading-[1.1]">
+                    Espaços que <br>
+                    <span class="italic font-normal text-brand-accent">traduzem</span> sua <br>
+                    melhor história.
+                </h1>
+
+                <p class="text-brand-secondary/80 text-sm sm:text-base leading-relaxed max-w-lg font-light">
+                    Criamos projetos residenciais de alto padrão e corporativos premium combinando minimalismo
+                    funcional, estética atemporal e o mais puro rigor geométrico.
+                </p>
+
+                <div
+                    class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4">
+                    <a href="#contato"
+                        class="bg-brand-primary text-white text-xs font-semibold uppercase tracking-[0.2em] text-center py-5 px-10 hover:bg-brand-accent transition-all duration-300 shadow-sm hover:shadow-lg">
+                        Fale Conosco
+                    </a>
+                    <a href="#projetos"
+                        class="border border-brand-primary/30 text-brand-primary text-xs font-semibold uppercase tracking-[0.2em] text-center py-5 px-10 hover:border-brand-accent hover:text-brand-accent transition-all duration-300">
+                        Ver Projetos
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-3 gap-6 pt-12 border-t border-brand-primary/5 max-w-md">
+                    <div>
+                        <div class="font-serif-editorial text-2xl text-brand-primary font-light">+120</div>
+                        <div class="text-[10px] text-brand-secondary/60 uppercase tracking-widest mt-1">Obras Entregues
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-serif-editorial text-2xl text-brand-primary font-light">15+</div>
+                        <div class="text-[10px] text-brand-secondary/60 uppercase tracking-widest mt-1">Anos de Mercado
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-serif-editorial text-2xl text-brand-primary font-light">Premium</div>
+                        <div class="text-[10px] text-brand-secondary/60 uppercase tracking-widest mt-1">Padrão de
+                            Entrega</div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="lg:col-span-6 relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex justify-center items-center">
+                <div
+                    class="absolute inset-4 border border-brand-accent/20 translate-x-4 translate-y-4 hidden sm:block pointer-events-none">
+                </div>
+                <div class="relative w-full h-full overflow-hidden shadow-2xl bg-brand-bgCream">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+                        alt="Interior de Casa Arquitetura de Alto Padrão"
+                        class="w-full h-full object-cover grayscale-[20%] hover:scale-105 transition-transform duration-700 ease-out">
+
+                    <div
+                        class="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 hidden sm:block border-l-2 border-brand-accent">
+                        <p class="text-[10px] uppercase tracking-widest text-brand-primary font-medium">Projeto
+                            Residencial MN — Mogi das Cruzes</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="servicos" class="py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div
+                class="flex flex-col md:flex-row md:items-end justify-between mb-16 lg:mb-24 pb-8 border-b border-brand-primary/5">
+                <div class="space-y-4">
+                    <span
+                        class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-accent block">Especialidades
+                        &amp; Soluções</span>
+                    <h2
+                        class="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl text-brand-primary font-light leading-tight">
+                        Nossa Abordagem <br class="hidden sm:inline"><span
+                            class="italic font-normal text-brand-accent">e Serviços Arquitetônicos</span>
+                    </h2>
+                </div>
+                <div class="mt-4 md:mt-0 max-w-md">
+                    <p class="text-brand-secondary/70 text-sm font-light leading-relaxed">
+                        Unimos inteligência construtiva, sofisticação de materiais e personalização total em cada etapa
+                        da jornada criativa e executiva.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-brand-primary/10">
+
+                <div
+                    class="p-8 lg:p-10 bg-white hover:bg-brand-bgOff transition-colors duration-300 border-b md:border-b-0 md:border-r border-brand-primary/10 flex flex-col justify-between min-h-[300px]">
+                    <div class="space-y-6">
+                        <div class="font-serif-editorial text-xl text-brand-accent">01/</div>
+                        <h3 class="text-base font-medium uppercase tracking-wider text-brand-primary">Projetos
+                            Residenciados</h3>
+                        <p class="text-brand-secondary/80 text-xs font-light leading-relaxed">
+                            Residências unifamiliares exclusivas, desenhadas detalhadamente do conceito aos acabamentos
+                            estruturais mais finos.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <span
+                            class="text-[10px] uppercase tracking-widest font-semibold border-b border-brand-accent pb-0.5 text-brand-accent">Alto
+                            Padrão</span>
+                    </div>
+                </div>
+
+                <div
+                    class="p-8 lg:p-10 bg-white hover:bg-brand-bgOff transition-colors duration-300 border-b md:border-b-0 lg:border-r border-brand-primary/10 flex flex-col justify-between min-h-[300px]">
+                    <div class="space-y-6">
+                        <div class="font-serif-editorial text-xl text-brand-accent">02/</div>
+                        <h3 class="text-base font-medium uppercase tracking-wider text-brand-primary">Interiores Premium
+                        </h3>
+                        <p class="text-brand-secondary/80 text-xs font-light leading-relaxed">
+                            Planejamento espacial interno focado em fluidez, marcenaria sob medida refinada e curadoria
+                            precisa de mobiliário autoral.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <span
+                            class="text-[10px] uppercase tracking-widest font-semibold border-b border-brand-accent pb-0.5 text-brand-accent">Sofisticação</span>
+                    </div>
+                </div>
+
+                <div
+                    class="p-8 lg:p-10 bg-white hover:bg-brand-bgOff transition-colors duration-300 border-b md:border-r border-brand-primary/10 flex flex-col justify-between min-h-[300px]">
+                    <div class="space-y-6">
+                        <div class="font-serif-editorial text-xl text-brand-accent">03/</div>
+                        <h3 class="text-base font-medium uppercase tracking-wider text-brand-primary">Arquitetura
+                            Comercial</h3>
+                        <p class="text-brand-secondary/80 text-xs font-light leading-relaxed">
+                            Espaços corporativos, escritórios e boutiques projetados para valorizar a identidade da
+                            marca e maximizar a experiência de clientes.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <span
+                            class="text-[10px] uppercase tracking-widest font-semibold border-b border-brand-accent pb-0.5 text-brand-accent">Corporativo</span>
+                    </div>
+                </div>
+
+                <div
+                    class="p-8 lg:p-10 bg-white hover:bg-brand-bgOff transition-colors duration-300 flex flex-col justify-between min-h-[300px]">
+                    <div class="space-y-6">
+                        <div class="font-serif-editorial text-xl text-brand-accent">04/</div>
+                        <h3 class="text-base font-medium uppercase tracking-wider text-brand-primary">Acompanhamento de
+                            Obras</h3>
+                        <p class="text-brand-secondary/80 text-xs font-light leading-relaxed">
+                            Fiscalização integral e gestão estética do canteiro para garantir fidelidade total entre o
+                            desenho técnico e a execução real.
+                        </p>
+                    </div>
+                    <div class="pt-6">
+                        <span
+                            class="text-[10px] uppercase tracking-widest font-semibold border-b border-brand-accent pb-0.5 text-brand-accent">Rigor
+                            Técnico</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="py-24 lg:py-32 bg-brand-bgOff" x-data="{ currentFilter: 'todos' }">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+                <div class="space-y-4">
+                    <span class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-accent block">Obras
+                        Selecionadas</span>
+                    <h2 class="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl text-brand-primary font-light">
+                        Galeria de <span class="italic font-normal text-brand-accent">Projetos</span>
+                    </h2>
+                </div>
+
+                <div
+                    class="flex flex-wrap items-center gap-3 sm:gap-4 border-b lg:border-b-0 pb-4 lg:pb-0 text-xs uppercase tracking-[0.15em] font-medium text-brand-secondary">
+                    <button @click="currentFilter = 'todos'"
+                        :class="currentFilter === 'todos' ? 'text-brand-accent border-brand-accent' : 'text-brand-secondary/60 border-transparent'"
+                        class="pb-1 border-b-2 hover:text-brand-accent transition-all duration-300 focus:outline-none">
+                        Todos
+                    </button>
+                    <button @click="currentFilter = 'residenciais'"
+                        :class="currentFilter === 'residenciais' ? 'text-brand-accent border-brand-accent' : 'text-brand-secondary/60 border-transparent'"
+                        class="pb-1 border-b-2 hover:text-brand-accent transition-all duration-300 focus:outline-none">
+                        Residenciais
+                    </button>
+                    <button @click="currentFilter = 'interiores'"
+                        :class="currentFilter === 'interiores' ? 'text-brand-accent border-brand-accent' : 'text-brand-secondary/60 border-transparent'"
+                        class="pb-1 border-b-2 hover:text-brand-accent transition-all duration-300 focus:outline-none">
+                        Interiores
+                    </button>
+                    <button @click="currentFilter = 'comerciais'"
+                        :class="currentFilter === 'comerciais' ? 'text-brand-accent border-brand-accent' : 'text-brand-secondary/60 border-transparent'"
+                        class="pb-1 border-b-2 hover:text-brand-accent transition-all duration-300 focus:outline-none">
+                        Comerciais
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div x-show="currentFilter === 'todos' || currentFilter === 'residenciais'"
+                    x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="group relative bg-white overflow-hidden border border-brand-primary/5 shadow-sm">
+                    <div class="aspect-[4/5] overflow-hidden bg-brand-bgCream">
+                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
+                            alt="Casa de Alto Padrão Minimalista"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    </div>
+                    <div class="p-6 bg-white flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-[10px] uppercase tracking-widest text-brand-accent font-medium">Residencial</span>
+                            <h3
+                                class="font-serif-editorial text-xl text-brand-primary mt-1 font-light group-hover:text-brand-accent transition-colors duration-300">
+                                Residência Alvorada</h3>
+                        </div>
+                        <span class="text-xs text-brand-secondary/50 font-light mt-2">2025</span>
+                    </div>
+                </div>
+
+                <div x-show="currentFilter === 'todos' || currentFilter === 'interiores'"
+                    x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="group relative bg-white overflow-hidden border border-brand-primary/5 shadow-sm">
+                    <div class="aspect-[4/5] overflow-hidden bg-brand-bgCream">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
+                            alt="Living Room Luxury Interior Design"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    </div>
+                    <div class="p-6 bg-white flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-[10px] uppercase tracking-widest text-brand-accent font-medium">Interiores</span>
+                            <h3
+                                class="font-serif-editorial text-xl text-brand-primary mt-1 font-light group-hover:text-brand-accent transition-colors duration-300">
+                                Apartamento Concept</h3>
+                        </div>
+                        <span class="text-xs text-brand-secondary/50 font-light mt-2">2026</span>
+                    </div>
+                </div>
+
+                <div x-show="currentFilter === 'todos' || currentFilter === 'comerciais'"
+                    x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="group relative bg-white overflow-hidden border border-brand-primary/5 shadow-sm">
+                    <div class="aspect-[4/5] overflow-hidden bg-brand-bgCream">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+                            alt="Escritório Premium Corporativo"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    </div>
+                    <div class="p-6 bg-white flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-[10px] uppercase tracking-widest text-brand-accent font-medium">Comercial</span>
+                            <h3
+                                class="font-serif-editorial text-xl text-brand-primary mt-1 font-light group-hover:text-brand-accent transition-colors duration-300">
+                                Sede Corporativa Nexus</h3>
+                        </div>
+                        <span class="text-xs text-brand-secondary/50 font-light mt-2">2025</span>
+                    </div>
+                </div>
+
+                <div x-show="currentFilter === 'todos' || currentFilter === 'residenciais'"
+                    x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="group relative bg-white overflow-hidden border border-brand-primary/5 shadow-sm">
+                    <div class="aspect-[4/5] overflow-hidden bg-brand-bgCream">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+                            alt="Casa de Praia de Alto Padrão"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    </div>
+                    <div class="p-6 bg-white flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-[10px] uppercase tracking-widest text-brand-accent font-medium">Residencial</span>
+                            <h3
+                                class="font-serif-editorial text-xl text-brand-primary mt-1 font-light group-hover:text-brand-accent transition-colors duration-300">
+                                Villa Essência</h3>
+                        </div>
+                        <span class="text-xs text-brand-secondary/50 font-light mt-2">2026</span>
+                    </div>
+                </div>
+
+                <div x-show="currentFilter === 'todos' || currentFilter === 'interiores'"
+                    x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="group relative bg-white overflow-hidden border border-brand-primary/5 shadow-sm">
+                    <div class="aspect-[4/5] overflow-hidden bg-brand-bgCream">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+                            alt="Cozinha Minimalista sob medida"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    </div>
+                    <div class="p-6 bg-white flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-[10px] uppercase tracking-widest text-brand-accent font-medium">Interiores</span>
+                            <h3
+                                class="font-serif-editorial text-xl text-brand-primary mt-1 font-light group-hover:text-brand-accent transition-colors duration-300">
+                                Cozinha Integrada Lumina</h3>
+                        </div>
+                        <span class="text-xs text-brand-secondary/50 font-light mt-2">2025</span>
+                    </div>
+                </div>
+
+                <div x-show="currentFilter === 'todos' || currentFilter === 'comerciais'"
+                    x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="group relative bg-white overflow-hidden border border-brand-primary/5 shadow-sm">
+                    <div class="aspect-[4/5] overflow-hidden bg-brand-bgCream">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+                            alt="Fachada Comercial vidro corporativo"
+                            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+                    </div>
+                    <div class="p-6 bg-white flex justify-between items-start">
+                        <div>
+                            <span
+                                class="text-[10px] uppercase tracking-widest text-brand-accent font-medium">Comercial</span>
+                            <h3
+                                class="font-serif-editorial text-xl text-brand-primary mt-1 font-light group-hover:text-brand-accent transition-colors duration-300">
+                                Pavilhão Empresarial Atrium</h3>
+                        </div>
+                        <span class="text-xs text-brand-secondary/50 font-light mt-2">2024</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="processo" class="py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="max-w-2xl mb-16 lg:mb-24">
+                <span class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-accent block mb-4">Metodologia
+                    Transparente</span>
+                <h2
+                    class="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl text-brand-primary font-light leading-tight">
+                    O Caminho para a sua <br><span class="italic font-normal text-brand-accent">Nova Realidade
+                        Espacial</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 relative">
+
+                <div class="relative space-y-4 pt-6 border-t border-brand-primary/10">
+                    <div class="absolute -top-[1px] left-0 w-12 h-0.5 bg-brand-accent"></div>
+                    <div class="font-serif-editorial text-3xl font-light text-brand-accent">01.</div>
+                    <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-primary">Briefing &amp;
+                        Imersão</h3>
+                    <p class="text-brand-secondary/70 text-xs font-light leading-relaxed">
+                        Entendimento profundo das suas necessidades, rotinas, desejos estéticos e alinhamento do
+                        orçamento planejado.
+                    </p>
+                </div>
+
+                <div class="relative space-y-4 pt-6 border-t border-brand-primary/10">
+                    <div class="absolute -top-[1px] left-0 w-12 h-0.5 bg-brand-accent/40"></div>
+                    <div class="font-serif-editorial text-3xl font-light text-brand-accent">02.</div>
+                    <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-primary">Anteprojeto 3D</h3>
+                    <p class="text-brand-secondary/70 text-xs font-light leading-relaxed">
+                        Modelagem volumétrica tridimensional com simulações hiper-realistas para validação de layout,
+                        fluxos e iluminação.
+                    </p>
+                </div>
+
+                <div class="relative space-y-4 pt-6 border-t border-brand-primary/10">
+                    <div class="absolute -top-[1px] left-0 w-12 h-0.5 bg-brand-accent/40"></div>
+                    <div class="font-serif-editorial text-3xl font-light text-brand-accent">03.</div>
+                    <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-primary">Detalhamento Técnico
+                    </h3>
+                    <p class="text-brand-secondary/70 text-xs font-light leading-relaxed">
+                        Produção de todo o material executivo, plantas de marcenaria, elétrica, paginação de pisos e
+                        especificações exatas.
+                    </p>
+                </div>
+
+                <div class="relative space-y-4 pt-6 border-t border-brand-primary/10">
+                    <div class="absolute -top-[1px] left-0 w-12 h-0.5 bg-brand-accent"></div>
+                    <div class="font-serif-editorial text-3xl font-light text-brand-accent">04.</div>
+                    <h3 class="text-xs font-semibold uppercase tracking-widest text-brand-primary">Execução &amp;
+                        Entrega</h3>
+                    <p class="text-brand-secondary/70 text-xs font-light leading-relaxed">
+                        Orientação precisa para construtores, acompanhamento técnico das fases críticas e a consolidação
+                        final da obra idealizada.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-24 lg:py-32 bg-brand-bgCream border-t border-b border-brand-primary/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+            <div class="lg:col-span-5 relative w-full h-[450px] sm:h-[550px] overflow-hidden shadow-xl bg-white p-4">
+                <div class="w-full h-full overflow-hidden bg-brand-bgOff">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+                        alt="Arquiteta Principal do Studio" class="w-full h-full object-cover grayscale">
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 space-y-8">
+                <div class="space-y-4">
+                    <span class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-accent block">Identidade
+                        &amp; Liderança</span>
+                    <h2 class="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl text-brand-primary font-light">
+                        Criando legados através da <span class="italic font-normal text-brand-accent">essência e
+                            forma</span>
+                    </h2>
+                </div>
+
+                <div
+                    class="text-brand-secondary/90 text-sm sm:text-base font-light space-y-6 leading-relaxed max-w-2xl">
+                    <p>
+                        Fundado pela arquiteta e urbanista Helena Ramos, o estúdio nasceu da convicção de que a
+                        arquitetura premium de verdade deve se despir de excessos ornamentais para focar no que
+                        realmente importa: a harmonia perfeita da luz natural, a verdade textural dos materiais nobres e
+                        o bem-estar íntimo de quem habita.
+                    </p>
+                    <p>
+                        Com passagens acadêmicas e corporativas internacionais, nossa equipe assina obras marcantes na
+                        região metropolitana e litoral de São Paulo, colecionando menções por seu olhar apurado,
+                        detalhismo extremo e absoluto respeito aos prazos e inteligência de engenharia de custos dos
+                        clientes.
+                    </p>
+                </div>
+
+                <div class="flex items-center space-x-6 pt-4">
+                    <span class="text-xs uppercase tracking-[0.15em] font-medium text-brand-secondary/60">Siga nossa
+                        rotina no:</span>
+                    <div class="flex items-center space-x-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="text-brand-primary hover:text-brand-accent transition-colors duration-300"
+                            aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            class="text-brand-primary hover:text-brand-accent transition-colors duration-300"
+                            aria-label="LinkedIn">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5"
+                                viewBox="0 0 24 24">
+                                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contato" class="py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+
+                <div class="lg:col-span-6 space-y-10">
+                    <div class="space-y-4">
+                        <span class="text-xs font-semibold uppercase tracking-[0.25em] text-brand-accent block">Agende
+                            uma Reunião</span>
+                        <h2 class="font-serif-editorial text-3xl sm:text-4xl text-brand-primary font-light">
+                            Vamos idealizar seu <span class="italic font-normal text-brand-accent">próximo
+                                espaço?</span>
+                        </h2>
+                    </div>
+
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name"
+                                class="text-[10px] uppercase tracking-widest text-brand-secondary/70 block mb-2 font-medium">Nome
+                                Completo</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full bg-transparent border-b border-brand-primary/20 py-3 text-sm font-light text-brand-primary focus:outline-none focus:border-brand-accent transition-colors duration-300 placeholder-brand-secondary/30"
+                                placeholder="Ex: Roberto Silva">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email"
+                                    class="text-[10px] uppercase tracking-widest text-brand-secondary/70 block mb-2 font-medium">E-mail
+                                    Corporativo ou Pessoal</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full bg-transparent border-b border-brand-primary/20 py-3 text-sm font-light text-brand-primary focus:outline-none focus:border-brand-accent transition-colors duration-300 placeholder-brand-secondary/30"
+                                    placeholder="roberto@exemplo.com">
+                            </div>
+                            <div>
+                                <label for="phone"
+                                    class="text-[10px] uppercase tracking-widest text-brand-secondary/70 block mb-2 font-medium">WhatsApp
+                                    / Telefone</label>
+                                <input type="tel" id="phone" name="phone" required
+                                    class="w-full bg-transparent border-b border-brand-primary/20 py-3 text-sm font-light text-brand-primary focus:outline-none focus:border-brand-accent transition-colors duration-300 placeholder-brand-secondary/30"
+                                    placeholder="(11) 99999-9999">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message"
+                                class="text-[10px] uppercase tracking-widest text-brand-secondary/70 block mb-2 font-medium">Detalhes
+                                sobre o Projeto</label>
+                            <textarea id="message" name="message" rows="4" required
+                                class="w-full bg-transparent border-b border-brand-primary/20 py-3 text-sm font-light text-brand-primary focus:outline-none focus:border-brand-accent transition-colors duration-300 placeholder-brand-secondary/30 resize-none"
+                                placeholder="Conte-nos brevemente o local, tipo de imóvel e objetivos..."></textarea>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit"
+                                class="bg-brand-primary text-white text-xs font-semibold uppercase tracking-[0.2em] w-full sm:w-auto py-5 px-12 hover:bg-brand-accent transition-colors duration-300 shadow-sm">
+                                Enviar Solicitação
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="lg:col-span-6 flex flex-col justify-between space-y-12 lg:space-y-0">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 bg-brand-bgOff p-8 border border-brand-primary/5">
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-semibold uppercase tracking-widest text-brand-accent">Endereço do
+                                Studio</h4>
+                            <p class="text-brand-secondary text-xs font-light leading-relaxed">
+                                Av. Paulista, 1000<br>
+                                Bela Vista<br>
+                                São Paulo - SP<br>
+                                CEP 00000-000
+                            </p>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-semibold uppercase tracking-widest text-brand-accent">Canais de
+                                Contato</h4>
+                            <p class="text-brand-secondary text-xs font-light leading-relaxed">
+                                <strong>WhatsApp:</strong> (11) 99999-9999<br>
+                                <strong>Telefone Fixo:</strong> (11) 9999-9999<br>
+                                <strong>E-mail:</strong> contato@hausarquitetura.com
+                            </p>
+                            <div class="pt-1">
+                                <span
+                                    class="inline-block text-[10px] uppercase font-semibold text-emerald-600 tracking-wider bg-emerald-50 px-2 py-0.5 rounded">Atendimento
+                                    das 9h às 18h</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="w-full h-[300px] lg:h-[350px] overflow-hidden border border-brand-primary/10 grayscale-[40%] hover:grayscale-0 transition-all duration-500 shadow-inner">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!11m18!1m12!1m3!1d3658.077678580517!2d-46.33159999999999!3d-23.530327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cdd840b15b3bb3%3A0x6b772477382229b!2sParque%20Monte%20L%C3%ADbano%2C%20Mogi%20das%20Cruzes%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-brand-primary text-white pt-20 pb-8 border-t border-brand-secondary">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col space-y-16">
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+
+                <div class="md:col-span-5 space-y-6">
+                    <div class="flex flex-col tracking-widest">
+                        <span class="font-serif-editorial text-2xl font-light uppercase tracking-[0.2em]">HAUS &amp;
+                            CO.</span>
+                        <span class="text-[9px] uppercase tracking-[0.4em] text-white/40 mt-1">Arquitetura Autoral
+                            Premium</span>
+                    </div>
+                    <p class="text-white/60 text-xs font-light leading-relaxed max-w-sm">
+                        Desenvolvendo composições espaciais marcantes, repletas de verdade material e alinhadas ao
+                        estilo de vida refinado e minimalista contemporâneo.
+                    </p>
+                </div>
+
+                <div class="md:col-span-4 space-y-4">
+                    <h4 class="text-[11px] font-semibold uppercase tracking-widest text-brand-accent">Navegação Interna
+                    </h4>
+                    <ul class="grid grid-cols-2 gap-3 text-xs font-light text-white/70">
+                        <li><a href="#inicio" class="hover:text-brand-accent transition-colors duration-300">Início</a>
+                        </li>
+                        <li><a href="#servicos"
+                                class="hover:text-brand-accent transition-colors duration-300">Abordagem</a></li>
+                        <li><a href="#projetos"
+                                class="hover:text-brand-accent transition-colors duration-300">Projetos</a></li>
+                        <li><a href="#processo"
+                                class="hover:text-brand-accent transition-colors duration-300">Processo</a></li>
+                        <li><a href="#sobre" class="hover:text-brand-accent transition-colors duration-300">Sobre
+                                Nós</a></li>
+                        <li><a href="#contato"
+                                class="hover:text-brand-accent transition-colors duration-300">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-3 space-y-4">
+                    <h4 class="text-[11px] font-semibold uppercase tracking-widest text-brand-accent">Conectar Conosco
+                    </h4>
+                    <div class="flex items-center space-x-5 text-white/70">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-brand-accent transition-colors duration-300"
+                            aria-label="Acesse nosso Instagram">
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-brand-accent transition-colors duration-300"
+                            aria-label="Acesse nosso LinkedIn">
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+                            class="hover:text-brand-accent transition-colors duration-300"
+                            aria-label="Acesse nosso Facebook">
+                            <span>Facebook</span>
+                        </a>
+                    </div>
+                    <p class="text-[10px] text-white/40 font-light pt-2">Atualizações semanais de canteiros e conceitos
+                        em nossas redes sociais.</p>
+                </div>
+
+            </div>
+
+            <div
+                class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-white/40 font-light">
+                <div>
+                    &copy; 2026 HAUS &amp; CO. Arquitetura Premium. Todos os direitos reservados.
+                </div>
+                <div class="tracking-wider">
+                    Desenvolvido por Single Temas
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5511949945508" target="_blank" rel="noopener noreferrer"
+        class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center hover:bg-[#20ba59] transition-transform duration-300 hover:scale-110 group focus:outline-none"
+        aria-label="Fale direto conosco pelo WhatsApp">
+        <span class="absolute inset-0 rounded-full bg-[#25D366]/40 animate-ping opacity-75 group-hover:hidden"></span>
+
+        <svg class="w-6 h-6 relative z-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.4 0 12.008 0c3.202.001 6.212 1.249 8.477 3.517 2.266 2.268 3.51 5.28 3.51 8.49 0 6.654-5.338 12.002-11.95 12.002-2.01 0-3.99-.503-5.756-1.465L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.528 2.001 14.067.997 11.51.997c-5.444 0-9.866 4.373-9.87 9.802-.001 1.743.475 3.447 1.378 4.93L2.019 21.97l6.331-1.633zM17.651 14.5c-.307-.154-1.82-.9-2.102-1.003-.282-.102-.487-.153-.692.154-.204.307-.794.997-.973 1.203-.178.205-.357.23-.664.077-.307-.154-1.3-.48-2.477-1.532-.915-.817-1.533-1.827-1.713-2.135-.179-.307-.019-.473.135-.626.138-.138.307-.359.461-.538.154-.18.205-.308.307-.513.102-.205.051-.385-.026-.538-.077-.154-.692-1.667-.948-2.283-.25-.6-.51-.519-.693-.529-.18-.009-.384-.01-.589-.01-.205 0-.538.077-.82.385-.282.308-1.077 1.051-1.077 2.564 0 1.513 1.102 2.974 1.256 3.179.154.205 2.17 3.313 5.258 4.646.734.317 1.308.507 1.756.65.737.233 1.41.2 1.941.12.593-.089 1.82-.743 2.076-1.461.256-.718.256-1.333.179-1.461-.077-.128-.282-.205-.589-.359z" />
+        </svg>
+    </a>
+
+</body>
+
+</html>
